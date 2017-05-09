@@ -12,8 +12,6 @@
         <item name="android:windowNoTitle">true</item>
         <item name="android:windowBackground">@color/iwhite</item>
     </style>
-
-
     <style name="item_image">
         <item name="android:background">@color/iwhite</item>
         <item name="android:layout_width">@dimen/item_image_width</item>
