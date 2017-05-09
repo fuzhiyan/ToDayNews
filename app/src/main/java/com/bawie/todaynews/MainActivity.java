@@ -9,6 +9,7 @@ import com.bawie.todaynews.fragment.MenuRightFragment;
 import com.bwei.slidingmenu.SlidingMenu;
 import com.bwei.slidingmenu.app.SlidingFragmentActivity;
 //这是主页面123123123
+//wangkai
 public class MainActivity extends SlidingFragmentActivity {
     private SlidingMenu slidingMenu;
     @Override
