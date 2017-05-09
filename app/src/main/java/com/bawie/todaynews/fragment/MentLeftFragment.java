@@ -22,4 +22,8 @@ public class MentLeftFragment extends Fragment {
         View view=inflater.inflate(R.layout.menuleft_fragment,container,false);
         return  view;
     }
+    @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+    }
 }

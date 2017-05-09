@@ -17,7 +17,6 @@ public class MainActivity extends SlidingFragmentActivity {
         setContentView(R.layout.activity_main);
         initLeftRight();
     }
-
     private void initLeftRight() {
         Fragment leftFragment=new MentLeftFragment();
         setBehindContentView(R.layout.left_menu_frame);

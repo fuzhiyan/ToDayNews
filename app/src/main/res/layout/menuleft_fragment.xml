@@ -33,10 +33,8 @@
                 android:layout_width="35dp"
                 android:layout_height="35dp"
                 android:src="@drawable/ic_drawer_weibo"/>
-
         </LinearLayout>
-
-        <TextView
+        <Button
             android:textColor="@color/iblack"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
