@@ -8,7 +8,7 @@ import com.bawie.todaynews.fragment.MentLeftFragment;
 import com.bawie.todaynews.fragment.MenuRightFragment;
 import com.bwei.slidingmenu.SlidingMenu;
 import com.bwei.slidingmenu.app.SlidingFragmentActivity;
-
+//这是主页面
 public class MainActivity extends SlidingFragmentActivity {
     private SlidingMenu slidingMenu;
     @Override
