@@ -12,6 +12,7 @@ import com.bwei.slidingmenu.app.SlidingFragmentActivity;
 import com.umeng.socialize.UMShareAPI;
 
 //这是主页面123123123
+//wangkai
 public class MainActivity extends SlidingFragmentActivity {
     private SlidingMenu slidingMenu;
     @Override
