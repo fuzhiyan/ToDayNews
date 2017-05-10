@@ -1,5 +1,6 @@
 package com.bawie.todaynews;
 
+import android.content.Intent;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,8 @@ import com.bawie.todaynews.fragment.MentLeftFragment;
 import com.bawie.todaynews.fragment.MenuRightFragment;
 import com.bwei.slidingmenu.SlidingMenu;
 import com.bwei.slidingmenu.app.SlidingFragmentActivity;
+import com.umeng.socialize.UMShareAPI;
+
 //这是主页面123123123
 //wangkai
 public class MainActivity extends SlidingFragmentActivity {
@@ -42,6 +45,12 @@ public class MainActivity extends SlidingFragmentActivity {
         slidingMenu.setSecondaryMenu(R.layout.right_menu_frame);
         getSupportFragmentManager().beginTransaction().replace(R.id.id_frame_rightmenu, rightMenuFragment).commit();
 
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
     }
 }
 
