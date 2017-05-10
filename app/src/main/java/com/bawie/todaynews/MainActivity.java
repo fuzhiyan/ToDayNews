@@ -40,7 +40,6 @@ public class MainActivity extends SlidingFragmentActivity {
         MenuRightFragment rightMenuFragment = new MenuRightFragment();
 //        rightMenuFragment.setShareListener(this);
         slidingMenu.setSecondaryMenu(R.layout.right_menu_frame);
-
         getSupportFragmentManager().beginTransaction().replace(R.id.id_frame_rightmenu, rightMenuFragment).commit();
 
     }
