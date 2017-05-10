@@ -1,5 +1,7 @@
 package com.bawie.todaynews.fragment;
 
+import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -7,10 +9,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.bawie.todaynews.MainActivity;
+import com.bawie.todaynews.QQLogin;
 import com.bawie.todaynews.R;
+import com.bawie.todaynews.Sign;
 import com.umeng.socialize.UMAuthListener;
 import com.umeng.socialize.UMShareAPI;
 import com.umeng.socialize.bean.SHARE_MEDIA;
@@ -25,6 +31,7 @@ import java.util.Map;
 
 public class MentLeftFragment extends Fragment {
     private ImageView image;
+    private Button but;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -35,13 +42,26 @@ public class MentLeftFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         image= (ImageView) getActivity().findViewById(R.id.left_qqimage);
+        but= (Button) getActivity().findViewById(R.id.but);
         image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                login();
+//                login();
+                Intent in=new Intent(getActivity(), QQLogin.class);
+                startActivity(in);
+//                Toast.makeText(getActivity(),"已点击",Toast.LENGTH_LONG).show();
+//                startActivityForResult(in, Activity.RESULT_FIRST_USER);
+
             }
         });
 
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(getActivity(), Sign.class);
+                startActivity(in);
+            }
+        });
 
     }
 
@@ -66,7 +86,7 @@ public class MentLeftFragment extends Fragment {
             @Override
             public void onError(SHARE_MEDIA share_media, int i, Throwable throwable) {
 
-                Log.i("error",""+share_media);
+                Log.d("error",""+share_media);
             }
 
             @Override

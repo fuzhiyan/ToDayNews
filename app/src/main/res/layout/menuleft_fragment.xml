@@ -36,6 +36,7 @@
                 android:src="@drawable/ic_drawer_weibo"/>
         </LinearLayout>
         <Button
+            android:id="@+id/but"
             android:textColor="@color/iblack"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
