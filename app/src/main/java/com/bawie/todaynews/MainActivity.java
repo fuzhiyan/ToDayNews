@@ -94,10 +94,10 @@ public class MainActivity extends SlidingFragmentActivity {
     }
 
     private void setView() {
-
+    //
     }
 
-
+//
     public void switchTextViewColor(ViewGroup view, boolean white) {
         for (int i = 0; i < view.getChildCount(); i++) {
             if (view.getChildAt(i) instanceof ViewGroup) {
