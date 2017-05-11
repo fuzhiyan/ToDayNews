@@ -28,7 +28,6 @@ dependencies {
     testCompile 'junit:junit:4.12'
     compile project(':slidingmenu')
     compile 'com.kyleduo.switchbutton:library:1.4.6'
-    compile 'com.android.support:design:26.0.0-alpha1'
     compile 'org.xutils:xutils:3.5.0'
     compile 'io.github.openfeign:feign-gson:9.5.0'
     compile 'org.greenrobot:eventbus:3.0.0'
