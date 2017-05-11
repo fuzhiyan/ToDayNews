@@ -1,26 +1,73 @@
 package com.bawie.todaynews;
 
 import android.content.Intent;
+import android.graphics.Color;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.view.ViewPager;
 import android.os.Bundle;
 
+import com.bawie.todaynews.adapter.MyFragmentAdapter;
 import com.bawie.todaynews.fragment.MentLeftFragment;
 import com.bawie.todaynews.fragment.MenuRightFragment;
 import com.bwei.slidingmenu.SlidingMenu;
 import com.bwei.slidingmenu.app.SlidingFragmentActivity;
 import com.umeng.socialize.UMShareAPI;
 
+import java.util.ArrayList;
+import java.util.List;
+
 //这是主页面123123123
 //wangkai
 public class MainActivity extends SlidingFragmentActivity {
     private SlidingMenu slidingMenu;
+    private List<Fragment> list = new ArrayList<>();
+
+    private TabLayout index_tablayout;
+    private ViewPager index_viewpager;
+    private MyFragmentAdapter adapter;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initData();
         initLeftRight();
+
     }
+
+    private void initData() {
+
+            index_tablayout = (TabLayout)findViewById(R.id.index_tablayout);
+            index_viewpager = (ViewPager)findViewById(R.id.index_viewpager);
+
+            adapter = new MyFragmentAdapter(getSupportFragmentManager());
+            index_viewpager.setAdapter(adapter);
+            setWhiteMode();
+            index_tablayout.setupWithViewPager(index_viewpager);
+            index_tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+        }
+
+    public void changeMode(boolean b){
+        if (b){
+            index_tablayout.setBackgroundColor(Color.GRAY);
+            setWhiteMode();
+        }else {
+            index_tablayout.setBackgroundColor(Color.BLACK);
+            setNightMode();
+        }
+    }
+    private void setWhiteMode() {
+        index_tablayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.title_color));
+        index_tablayout.setTabTextColors(getResources().getColor(R.color.iblack),getResources().getColor(R.color.title_color));
+    }
+    private void setNightMode() {
+        index_tablayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.title_color));
+        index_tablayout.setTabTextColors(getResources().getColor(R.color.iblack),getResources().getColor(R.color.title_color));
+
+    }
+
+
     private void initLeftRight() {
         Fragment leftFragment=new MentLeftFragment();
         setBehindContentView(R.layout.left_menu_frame);
