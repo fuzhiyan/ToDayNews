@@ -1,22 +1,45 @@
 package com.bawie.todaynews;
 
+import android.graphics.Color;
+import android.graphics.PixelFormat;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
+import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.TextView;
 
+import com.bawie.todaynews.event.MainEvent;
+import com.bawie.todaynews.fragment.IndexFragment;
 import com.bawie.todaynews.fragment.MentLeftFragment;
 import com.bawie.todaynews.fragment.MenuRightFragment;
 import com.bwei.slidingmenu.SlidingMenu;
 import com.bwei.slidingmenu.app.SlidingFragmentActivity;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
+import org.greenrobot.eventbus.ThreadMode;
+
 //这是主页面123123123
 //wangkai
 public class MainActivity extends SlidingFragmentActivity {
     private SlidingMenu slidingMenu;
+    private WindowManager windowManager;
+    private WindowManager.LayoutParams layoutParams;
+    private View view;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initLeftRight();
+
+        initGrayBackGround();
+        if (!EventBus.getDefault().isRegistered(this)){
+            EventBus.getDefault().register(this);
+        }
+
     }
     private void initLeftRight() {
         Fragment leftFragment=new MentLeftFragment();
@@ -42,6 +65,55 @@ public class MainActivity extends SlidingFragmentActivity {
         slidingMenu.setSecondaryMenu(R.layout.right_menu_frame);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.id_frame_rightmenu, rightMenuFragment).commit();
+
+    }
+
+    public void initGrayBackGround(){
+        windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
+        layoutParams = new WindowManager.LayoutParams(
+                WindowManager.LayoutParams.TYPE_APPLICATION,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE |
+                        WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE,
+                PixelFormat.TRANSPARENT);
+        view = new View(this);
+        view.setBackgroundResource(R.color.color_window);
+    }
+
+
+    @Subscribe(threadMode = ThreadMode.MAIN)
+    public void onMainEvent(MainEvent event){
+        if (event.isWhite()){
+            windowManager.removeViewImmediate(view);
+        }else {
+            windowManager.addView(view,layoutParams);
+        }
+        setView();
+        switchTextViewColor((ViewGroup) getWindow().getDecorView(),event.isWhite());
+        IndexFragment indexFragment = new IndexFragment();
+        indexFragment.changeMode(event.isWhite());
+    }
+
+    private void setView() {
+
+    }
+
+
+    public void switchTextViewColor(ViewGroup view, boolean white) {
+        for (int i = 0; i < view.getChildCount(); i++) {
+            if (view.getChildAt(i) instanceof ViewGroup) {
+                switchTextViewColor((ViewGroup) view.getChildAt(i),white);
+            } else if (view.getChildAt(i) instanceof TextView) {
+                //设置颜色
+                int resouseId ;
+                TextView textView = (TextView) view.getChildAt(i);
+                if(white){
+                    resouseId = Color.BLACK;
+                }else {
+                    resouseId = Color.WHITE;
+                }
+                textView.setTextColor(resouseId);
+            }
+        }
 
     }
 }
