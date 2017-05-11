@@ -19,6 +19,7 @@
             android:orientation="horizontal">
 
             <ImageView
+                android:id="@+id/left_qqimage"
                 android:layout_weight="1"
                 android:layout_width="35dp"
                 android:layout_height="35dp"
@@ -35,6 +36,7 @@
                 android:src="@drawable/ic_drawer_weibo"/>
         </LinearLayout>
         <Button
+            android:id="@+id/but"
             android:textColor="@color/iblack"
             android:layout_marginTop="20dp"
             android:layout_marginLeft="20dp"
