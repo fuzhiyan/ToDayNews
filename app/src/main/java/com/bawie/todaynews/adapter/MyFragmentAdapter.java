@@ -5,9 +5,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 
-import com.bawie.todaynews.fragment.ShipinFragment;
-import com.bawie.todaynews.fragment.TuijianFragment;
-
 /**
  * Created by r on 2017/5/10.
  * fragment和viewpager的adapter
