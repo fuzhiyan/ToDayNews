@@ -1,5 +1,6 @@
 package com.bawie.todaynews.fragment;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -7,9 +8,13 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.CompoundButton;
+import android.widget.ImageView;
 
+import com.bawie.todaynews.QQLogin;
 import com.bawie.todaynews.R;
+import com.bawie.todaynews.Sign;
 import com.bawie.todaynews.constants.Constants;
 import com.bawie.todaynews.event.MainEvent;
 import com.bawie.todaynews.utils.PreferencesUtils;
@@ -25,6 +30,8 @@ import org.greenrobot.eventbus.EventBus;
 
 public class MentLeftFragment extends Fragment {
 
+    private Button but;
+    private ImageView imageView;
     private SwitchButton switch_btn;
     private View view;
 
@@ -39,6 +46,8 @@ public class MentLeftFragment extends Fragment {
     }
 
     private void initeView(View view) {
+        but= (Button) view.findViewById(R.id.but);
+        imageView= (ImageView) view.findViewById(R.id.left_qqimage);
 
         switch_btn = (SwitchButton) view.findViewById(R.id.switch_btn);
         switch_btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
@@ -71,5 +80,21 @@ public class MentLeftFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        but.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(getActivity(), Sign.class);
+                startActivity(in);
+            }
+        });
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(getActivity(), QQLogin.class);
+                startActivity(in);
+            }
+        });
+
+
     }
 }
