@@ -90,16 +90,10 @@ public class Sign extends AppCompatActivity implements View.OnClickListener{
     }
 
 
-    private EditText getPhone() {
-        return (EditText) findViewById(R.id.sign_deit1);
-    }
 
-    private EditText getPwd() {
-        return (EditText) findViewById(R.id.sign_edit2);
-    }
     private void login() {
-        String phone = getPhone().getText().toString().trim();
-        String pwd = getPwd().getText().toString().trim();
+        String phone = edit1.getText().toString().trim();
+        String pwd = edit2.getText().toString().trim();
 //        http://qhb.2dyt.com/Bwei/login?username=110110&password=1234&postkey=1503d
         RequestParams login = new RequestParams("http://qhb.2dyt.com/Bwei/login");
         login.addBodyParameter("username", phone);
@@ -135,7 +129,8 @@ public class Sign extends AppCompatActivity implements View.OnClickListener{
         });
     }
     private void reist() {
-        String phone = getPhone().getText().toString().trim();
+        String phone = edit1.getText().toString().trim();
+        String pwd = edit2.getText().toString().trim();
 
 
         RequestParams parms = new RequestParams("http://qhb.2dyt.com/Bwei/register");
