@@ -118,7 +118,6 @@ public class Sign extends AppCompatActivity implements View.OnClickListener{
                     System.out.println("登陆失败");
                 }
             }
-
             @Override
             public void onError(Throwable ex, boolean isOnCallback) {
 
