@@ -22,7 +22,7 @@ import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
 
 //这是主页面123123123
-//wangkai
+//王锴
 public class MainActivity extends SlidingFragmentActivity {
     private SlidingMenu slidingMenu;
     private WindowManager windowManager;

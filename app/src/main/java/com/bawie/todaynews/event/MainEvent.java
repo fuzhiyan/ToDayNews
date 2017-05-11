@@ -2,6 +2,7 @@ package com.bawie.todaynews.event;
 
 /**
  * Created by DELL on 2017/5/10.
+ * 王锴
  */
 
 public class MainEvent {
