@@ -8,6 +8,7 @@ import com.umeng.socialize.Config;
 import com.umeng.socialize.PlatformConfig;
 import com.umeng.socialize.UMShareAPI;
 
+import org.xutils.DbManager;
 import org.xutils.x;
 
 /**
@@ -24,6 +25,7 @@ public class MyApplection extends Application {
         super.onCreate();
         x.Ext.init(this);
         x.Ext.setDebug(false);
+        getDaoConfig();
         UMShareAPI.get(this);
         Config.DEBUG = true;
 //        Config.DEBUG=true;
@@ -34,5 +36,24 @@ public class MyApplection extends Application {
         ImageLoader.getInstance().init(fig);
 
 
+    }
+    public static DbManager.DaoConfig daoConfig;
+    public static DbManager.DaoConfig getDaoConfig(){
+
+        if(daoConfig==null){
+            daoConfig=new DbManager.DaoConfig()
+                    .setDbVersion(1)
+                    .setDbName("fzy.db")
+                    .setAllowTransaction(true)
+                    .setDbUpgradeListener(new DbManager.DbUpgradeListener() {
+                        @Override
+                        public void onUpgrade(DbManager db, int oldVersion, int newVersion) {
+
+                        }
+                    });
+
+        }
+
+        return daoConfig;
     }
 }

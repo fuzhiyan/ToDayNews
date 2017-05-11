@@ -5,11 +5,19 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
+import com.bawie.todaynews.bean.TuiJianBean;
 import com.bawie.todaynews.fragment.MentLeftFragment;
 import com.bawie.todaynews.fragment.MenuRightFragment;
+import com.bawie.todaynews.utils.MyUrl;
 import com.bwei.slidingmenu.SlidingMenu;
 import com.bwei.slidingmenu.app.SlidingFragmentActivity;
+import com.google.gson.Gson;
 import com.umeng.socialize.UMShareAPI;
+
+import org.xutils.common.Callback;
+import org.xutils.ex.DbException;
+import org.xutils.http.RequestParams;
+import org.xutils.x;
 
 //这是主页面123123123
 //wangkai
@@ -52,6 +60,39 @@ public class MainActivity extends SlidingFragmentActivity {
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         UMShareAPI.get(this).onActivityResult(requestCode,resultCode,data);
+    }
+    public void getData(){
+
+        RequestParams requestParams=new RequestParams("http://www.93.gov.cn/93app/data.do?channelId=0&startNum=0");
+        x.http().get(requestParams, new Callback.CommonCallback<String>() {
+            @Override
+            public void onSuccess(String result) {
+                Gson gson=new Gson();
+                TuiJianBean bean=  gson.fromJson(result, TuiJianBean.class);
+
+                try {
+                    x.getDb(MyApplection.getDaoConfig()).save(bean.getData());
+                } catch (DbException e) {
+                    e.printStackTrace();
+                }
+            }
+
+            @Override
+            public void onError(Throwable ex, boolean isOnCallback) {
+
+            }
+
+            @Override
+            public void onCancelled(CancelledException cex) {
+
+            }
+
+            @Override
+            public void onFinished() {
+
+            }
+        });
+
     }
 }
 
