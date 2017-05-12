@@ -10,6 +10,14 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        manifestPlaceholders = [
+                GETUI_APP_ID : "Iq61B7St5x9mKpVJ1BV9I9",
+                GETUI_APP_KEY : "TMTR9tgliB6JYeUdYz1gR8",
+                GETUI_APP_SECRET : "OmHpa413su8Iyo8QM6iFF1"
+        ]
+//        ndk {
+//            abiFilters "armeabi", "armeabi-v7a", "x86_64"
+//        }
     }
     buildTypes {
         release {
@@ -17,9 +25,20 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+//    sourceSets {
+//        main {
+//            jniLibs.srcDirs = ['libs']
+//        }
+//    }
 }
 
 dependencies {
+    dependencies {
+        compile fileTree(dir: 'libs', include: ['*.jar'])
+        compile files('libs/GetuiSDK2.10.2.0.jar')
+        compile 'com.android.support:support-v4'
+    }
+
     compile fileTree(include: ['*.jar'], dir: 'libs')
     androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
         exclude group: 'com.android.support', module: 'support-annotations'
@@ -33,5 +52,6 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.android.support:design:25.2.0'
     compile 'com.nostra13.universalimageloader:universal-image-loader:1.9.5'
+    //    compile 'com.android.support:support-v4'
     compile project(':XListView')
 }

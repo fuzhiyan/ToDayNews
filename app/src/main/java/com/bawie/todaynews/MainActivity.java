@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
-
+import com.igexin.sdk.PushManager;
 import com.bawie.todaynews.event.MainEvent;
 import com.bawie.todaynews.fragment.IndexFragment;
 import com.bawie.todaynews.fragment.MentLeftFragment;
@@ -20,7 +20,6 @@ import com.bwei.slidingmenu.app.SlidingFragmentActivity;
 import org.greenrobot.eventbus.EventBus;
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
-
 //这是主页面123123123
 //王锴
 public class MainActivity extends SlidingFragmentActivity {
@@ -33,18 +32,22 @@ public class MainActivity extends SlidingFragmentActivity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        // com.getui.demo.DemoPushService 为第三方自定义推送服务
+        PushManager.getInstance().initialize(this.getApplicationContext(),com.bawie.todaynews.DemoPushService.class);
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), com.bawie.todaynews.DemoIntentService.class);
         initLeftRight();
 
         initGrayBackGround();
         if (!EventBus.getDefault().isRegistered(this)){
             EventBus.getDefault().register(this);
         }
-
     }
     private void initLeftRight() {
         Fragment leftFragment=new MentLeftFragment();
         setBehindContentView(R.layout.left_menu_frame);
         getSupportFragmentManager().beginTransaction().replace(R.id.frame_leftmenu_id,leftFragment).commit();
+        // com.getui.demo.DemoIntentService 为第三方自定义的推送服务事件接收类
+        PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), DemoIntentService.class);
         slidingMenu=getSlidingMenu();
         //设置滑动方式
         slidingMenu.setMode(SlidingMenu.LEFT_RIGHT);
@@ -78,8 +81,6 @@ public class MainActivity extends SlidingFragmentActivity {
         view = new View(this);
         view.setBackgroundResource(R.color.color_window);
     }
-
-
     @Subscribe(threadMode = ThreadMode.MAIN)
     public void onMainEvent(MainEvent event){
         if (event.isWhite()){
@@ -116,6 +117,7 @@ public class MainActivity extends SlidingFragmentActivity {
         }
 
     }
+
 }
 
 
