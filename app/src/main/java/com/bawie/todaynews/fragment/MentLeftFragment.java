@@ -11,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CompoundButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.bawie.todaynews.QQLogin;
 import com.bawie.todaynews.R;
@@ -30,7 +31,7 @@ import org.greenrobot.eventbus.EventBus;
 
 public class MentLeftFragment extends Fragment {
 
-    private Button but;
+    private TextView but;
     private ImageView imageView;
     private SwitchButton switch_btn;
     private View view;
@@ -46,7 +47,7 @@ public class MentLeftFragment extends Fragment {
     }
 
     private void initeView(View view) {
-        but= (Button) view.findViewById(R.id.but);
+        but= (TextView) view.findViewById(R.id.but);
         imageView= (ImageView) view.findViewById(R.id.left_qqimage);
 
         switch_btn = (SwitchButton) view.findViewById(R.id.switch_btn);

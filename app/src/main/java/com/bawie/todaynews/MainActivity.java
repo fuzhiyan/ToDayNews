@@ -60,7 +60,7 @@ public class MainActivity extends SlidingFragmentActivity {
         index_viewpager.setAdapter(adapter);
 
         index_tablayout.setupWithViewPager(index_viewpager);
-
+        setWhiteMode();
         index_tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
 
     }
@@ -113,8 +113,8 @@ public class MainActivity extends SlidingFragmentActivity {
         }
         setView();
         switchTextViewColor((ViewGroup) getWindow().getDecorView(),event.isWhite());
-        IndexFragment indexFragment = new IndexFragment();
-        indexFragment.changeMode(event.isWhite());
+       // IndexFragment indexFragment = new IndexFragment();
+        //indexFragment.changeMode(event.isWhite());
     }
 
     private void setView() {
@@ -133,13 +133,38 @@ public class MainActivity extends SlidingFragmentActivity {
                 if(white){
                     resouseId = Color.BLACK;
                 }else {
-                    resouseId = Color.WHITE;
+                    resouseId = Color.RED;
                 }
                 textView.setTextColor(resouseId);
             }
         }
 
     }
+
+
+    public void changeMode(boolean white){
+        if (white){
+            index_tablayout.setBackgroundColor(Color.GRAY);
+            setWhiteMode();
+        }else {
+            index_tablayout.setBackgroundColor(Color.BLACK);
+            setNightMode();
+        }
+    }
+
+    private void setWhiteMode() {
+
+        index_tablayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.title_color));
+
+        index_tablayout.setTabTextColors(getResources().getColor(R.color.iblack),getResources().getColor(R.color.title_color));
+
+    }
+
+    private void setNightMode(){
+        index_tablayout.setSelectedTabIndicatorColor(getResources().getColor(R.color.title_color));
+        index_tablayout.setTabTextColors(getResources().getColor(R.color.iblack),getResources().getColor(R.color.title_color));
+    }
+
 
 }
 
