@@ -37,12 +37,9 @@ public class MyApplection extends Application {
         PushManager.getInstance().initialize(this,DemoIntentService.class);
         ImageLoaderConfiguration fig=new ImageLoaderConfiguration.Builder(getApplicationContext()).memoryCacheExtraOptions(480,800).build();
         ImageLoader.getInstance().init(fig);
-
-
     }
     public static DbManager.DaoConfig daoConfig;
     public static DbManager.DaoConfig getDaoConfig(){
-
         if(daoConfig==null){
             daoConfig=new DbManager.DaoConfig()
                     .setDbVersion(1)

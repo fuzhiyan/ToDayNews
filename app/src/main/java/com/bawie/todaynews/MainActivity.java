@@ -2,13 +2,17 @@ package com.bawie.todaynews;
 
 import android.graphics.Color;
 import android.graphics.PixelFormat;
+import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
+import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.TextView;
+
+import com.bawie.todaynews.adapter.Vp_Adapter;
 import com.igexin.sdk.PushManager;
 import com.bawie.todaynews.event.MainEvent;
 import com.bawie.todaynews.fragment.IndexFragment;
@@ -27,11 +31,15 @@ public class MainActivity extends SlidingFragmentActivity {
     private WindowManager windowManager;
     private WindowManager.LayoutParams layoutParams;
     private View view;
+    private TabLayout index_tablayout;
+    private ViewPager index_viewpager;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        initView();
         // com.getui.demo.DemoPushService 为第三方自定义推送服务
         PushManager.getInstance().initialize(this.getApplicationContext(),com.bawie.todaynews.DemoPushService.class);
         PushManager.getInstance().registerPushIntentService(this.getApplicationContext(), com.bawie.todaynews.DemoIntentService.class);
@@ -42,6 +50,21 @@ public class MainActivity extends SlidingFragmentActivity {
             EventBus.getDefault().register(this);
         }
     }
+
+    private void initView() {
+        index_tablayout = (TabLayout) findViewById(R.id.index_tablayout);
+        index_viewpager = (ViewPager) findViewById(R.id.index_viewpager);
+
+        Vp_Adapter adapter = new Vp_Adapter(getSupportFragmentManager());
+
+        index_viewpager.setAdapter(adapter);
+
+        index_tablayout.setupWithViewPager(index_viewpager);
+
+        index_tablayout.setTabMode(TabLayout.MODE_SCROLLABLE);
+
+    }
+
     private void initLeftRight() {
         Fragment leftFragment=new MentLeftFragment();
         setBehindContentView(R.layout.left_menu_frame);
