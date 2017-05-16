@@ -1,19 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.bawie.todaynews">
+    package="com.bawie.todaynews"> <!-- 解决Android L上通知显示异常问题，targetSdkVersion需要设置成22 -->
+    <uses-sdk
+        android:minSdkVersion="9"
+        android:targetSdkVersion="22" />
+
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
-    <!-- 解决Android L上通知显示异常问题，targetSdkVersion需要设置成22 -->
-    <uses-sdk
-        android:minSdkVersion="9"
-        android:targetSdkVersion="22" />
 
     <!-- 个推SDK权限配置开始 -->
     <uses-permission android:name="android.permission.INTERNET" />
@@ -39,18 +39,16 @@
 
     <permission
         android:name="getui.permission.GetuiService.${applicationId}"
-        android:protectionLevel="normal" >
-    </permission>
-    <!-- iBeancon功能所需权限 -->;
-    <uses-permission android:name="android.permission.BLUETOOTH"/>
-    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN"/>
+        android:protectionLevel="normal"></permission>
+    <!-- iBeancon功能所需权限 -->
+    ;
+    <uses-permission android:name="android.permission.BLUETOOTH" />
+    <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <!-- 个推3.0电子围栏功能所需权限 -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
 
     <!-- 个推SDK权限配置结束 -->
-
-
     <application
         android:name=".MyApplection"
         android:allowBackup="true"
@@ -60,35 +58,38 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58f4a21bb27b0a4a66001db5" >
-        </meta-data>
-        <activity android:name=".MainActivity"
+            android:value="58f4a21bb27b0a4a66001db5"></meta-data>
+
+        <activity
+            android:name=".MainActivity"
             android:theme="@style/Theme.AppCompat">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".QQLogin"></activity>
-        <activity android:name=".Sign"></activity>
-        <activity android:name=".Pingdao"></activity>
-
+        <activity android:name=".QQLogin" />
+        <activity android:name=".Sign" />
+        <activity android:name=".Pingdao" />
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
-            android:noHistory="true" >
+            android:noHistory="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="tencent1106031063" />
             </intent-filter>
         </activity>
         <activity
             android:name="com.umeng.qq.tencent.AssistActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
             android:screenOrientation="portrait"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"
-            android:configChanges="orientation|keyboardHidden|screenSize"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
         <!-- 个推SDK配置开始 -->
         <!-- 配置的第三方参数属性 -->
         <meta-data
@@ -108,11 +109,11 @@
             android:label="NotificationCenter"
             android:process=":pushservice">
             <intent-filter>
-                <action android:name="com.igexin.sdk.action.service.message"/>
+                <action android:name="com.igexin.sdk.action.service.message" />
             </intent-filter>
         </service>
 
-        <receiver android:name="com.igexin.sdk.PushReceiver" >
+        <receiver android:name="com.igexin.sdk.PushReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
@@ -131,14 +132,13 @@
             android:exported="false"
             android:process=":pushservice"
             android:taskAffinity="com.igexin.sdk.PushActivityTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar" >
-        </activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
 
         <service
             android:name="com.igexin.download.DownloadService"
             android:process=":pushservice" />
 
-        <receiver android:name="com.igexin.download.DownloadReceiver" >
+        <receiver android:name="com.igexin.download.DownloadReceiver">
             <intent-filter>
                 <action android:name="android.net.conn.CONNECTIVITY_CHANGE" />
             </intent-filter>
@@ -146,8 +146,8 @@
 
         <provider
             android:name="com.igexin.download.DownloadProvider"
-            android:exported="true"
             android:authorities="downloads.${applicationId}"
+            android:exported="true"
             android:process=":pushservice" />
 
         <activity
@@ -156,18 +156,17 @@
             android:exported="true"
             android:process=":pushservice"
             android:taskAffinity="com.igexin.sdk.PushActivityTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"/>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <!-- 个推SDK配置结束 -->
         <service
             android:name=".DemoPushService"
             android:exported="true"
             android:label="PushService"
-            android:process=":pushservice">
-        </service>
-        <service android:name="com.bawie.todaynews.DemoIntentService"/>
+            android:process=":pushservice"></service>
+        <service android:name=".DemoIntentService" />
 
-
-</application>
+        <activity android:name=".LixianActivity"></activity>
+    </application>
 
 </manifest>
