@@ -19,6 +19,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/index_tablayout"></android.support.design.widget.TabLayout>
         <ImageView
+            android:id="@+id/pindao_image"
             android:src="@drawable/channel_glide_press_night"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content" />

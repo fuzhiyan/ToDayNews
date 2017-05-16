@@ -1,5 +1,6 @@
 package com.bawie.todaynews;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.PixelFormat;
 import android.support.design.widget.TabLayout;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bawie.todaynews.adapter.Vp_Adapter;
@@ -33,6 +35,7 @@ public class MainActivity extends SlidingFragmentActivity {
     private View view;
     private TabLayout index_tablayout;
     private ViewPager index_viewpager;
+    private ImageView imageView;
 
 
     @Override
@@ -54,7 +57,14 @@ public class MainActivity extends SlidingFragmentActivity {
     private void initView() {
         index_tablayout = (TabLayout) findViewById(R.id.index_tablayout);
         index_viewpager = (ViewPager) findViewById(R.id.index_viewpager);
-
+        imageView= (ImageView) findViewById(R.id.pindao_image);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent in=new Intent(MainActivity.this,Pingdao.class);
+                startActivity(in);
+            }
+        });
         Vp_Adapter adapter = new Vp_Adapter(getSupportFragmentManager());
 
         index_viewpager.setAdapter(adapter);

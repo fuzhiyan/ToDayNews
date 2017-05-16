@@ -1,6 +1,8 @@
 package com.bawie.todaynews.fragment;
 
 
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Message;
@@ -8,6 +10,7 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bawie.todaynews.R;
 import com.bawie.todaynews.adapter.Xlv_Adapter;
@@ -49,42 +52,55 @@ public class Xlv_Fragment extends Fragment {
     }
 
     private void initData() {
-        new GetGson(handler, MyUrl.tuijian).start();
+        ConnectivityManager connectivityManager= (ConnectivityManager) getActivity().getSystemService(getActivity().CONNECTIVITY_SERVICE);
 
+        NetworkInfo networkInfo=connectivityManager.getActiveNetworkInfo();
 
-        xlv.setPullRefreshEnable(true);
-        xlv.setPullLoadEnable(true);
+        if(networkInfo.isAvailable()==false){
 
-        xlv.setXListViewListener(new XListView.IXListViewListener() {
-            @Override
-            public void onRefresh() {
-                handler.postDelayed(new Runnable() {
+            Toast.makeText(getActivity(),"网络链接异常",Toast.LENGTH_LONG).show();
+        }else {
+            if (networkInfo.getType() == ConnectivityManager.TYPE_WIFI) {
+                new GetGson(handler, MyUrl.tuijian).start();
+                xlv.setPullRefreshEnable(true);
+                xlv.setPullLoadEnable(true);
+
+                xlv.setXListViewListener(new XListView.IXListViewListener() {
                     @Override
-                    public void run() {
-                        data.clear();
-                        new GetGson(handler, MyUrl.tuijian).start();
-                        adapter.notifyDataSetChanged();
-                        xlv.stopRefresh();
+                    public void onRefresh() {
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                data.clear();
+                                new GetGson(handler, MyUrl.tuijian).start();
+                                adapter.notifyDataSetChanged();
+                                xlv.stopRefresh();
 
+                            }
+                        }, 1000);
                     }
-                }, 1000);
+
+                    @Override
+                    public void onLoadMore() {
+                        handler.postDelayed(new Runnable() {
+                            @Override
+                            public void run() {
+                                data.addAll(data);
+                                adapter.notifyDataSetChanged();
+                                xlv.stopLoadMore();
+
+                            }
+                        }, 1000);
+                    }
+                });
+
+            } else {
+
+
             }
 
-            @Override
-            public void onLoadMore() {
-                handler.postDelayed(new Runnable() {
-                    @Override
-                    public void run() {
-                        data.addAll(data);
-                        adapter.notifyDataSetChanged();
-                        xlv.stopLoadMore();
 
-                    }
-                }, 1000);
-            }
-        });
-
-
+        }
     }
 
     private void initHandler() {
