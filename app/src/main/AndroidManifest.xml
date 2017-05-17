@@ -39,7 +39,7 @@
 
     <permission
         android:name="getui.permission.GetuiService.${applicationId}"
-        android:protectionLevel="normal"></permission>
+        android:protectionLevel="normal" />
     <!-- iBeancon功能所需权限 -->
     ;
     <uses-permission android:name="android.permission.BLUETOOTH" />
@@ -58,7 +58,7 @@
         android:theme="@style/AppTheme">
         <meta-data
             android:name="UMENG_APPKEY"
-            android:value="58f4a21bb27b0a4a66001db5"></meta-data>
+            android:value="58f4a21bb27b0a4a66001db5" />
 
         <activity
             android:name=".MainActivity"
@@ -132,7 +132,7 @@
             android:exported="false"
             android:process=":pushservice"
             android:taskAffinity="com.igexin.sdk.PushActivityTask"
-            android:theme="@android:style/Theme.Translucent.NoTitleBar"></activity>
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
 
         <service
             android:name="com.igexin.download.DownloadService"
@@ -163,10 +163,13 @@
             android:name=".DemoPushService"
             android:exported="true"
             android:label="PushService"
-            android:process=":pushservice"></service>
+            android:process=":pushservice" />
         <service android:name=".DemoIntentService" />
 
-        <activity android:name=".LixianActivity"></activity>
+        <activity android:name=".LixianActivity" />
+        <activity android:name=".MoreLoginActivity" />
+        <activity android:name=".PhoneLoginActivity" />
+        <activity android:name=".PhoneRegisterActivity"></activity>
     </application>
 
 </manifest>

@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bawie.todaynews.MoreLoginActivity;
 import com.bawie.todaynews.QQLogin;
 import com.bawie.todaynews.R;
 import com.bawie.todaynews.Sign;
@@ -84,7 +85,7 @@ public class MentLeftFragment extends Fragment {
         but.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent in=new Intent(getActivity(), Sign.class);
+                Intent in=new Intent(getActivity(), MoreLoginActivity.class);
                 startActivity(in);
             }
         });
