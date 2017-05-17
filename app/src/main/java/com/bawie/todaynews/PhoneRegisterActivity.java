@@ -1,6 +1,7 @@
 package com.bawie.todaynews;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -29,6 +30,8 @@ public class PhoneRegisterActivity extends Activity {
             @Override
             public void onClick(View v) {
                 if (!TextUtils.isEmpty(edit_phone_register_number.getText().toString()) && phone_register_checkBox.isChecked()){
+                    Intent in=new Intent(PhoneRegisterActivity.this,Sign.class);
+                    startActivity(in);
                     Toast.makeText(PhoneRegisterActivity.this,"注册成功",Toast.LENGTH_SHORT).show();
                 }else if(!TextUtils.isEmpty(edit_phone_register_number.getText().toString()) && !phone_register_checkBox.isChecked()){
                     Toast.makeText(PhoneRegisterActivity.this,"点击同意阅读用户协议",Toast.LENGTH_SHORT).show();

@@ -33,11 +33,8 @@ import android.widget.TextView;
 
 
 import com.bawie.todaynews.adapter.OtherAdapter;
-//import com.example.sus.android_xutilstext.Bean.Titles;
-//import com.example.sus.android_xutilstext.Bean.TopNews;
-//import com.example.sus.android_xutilstext.MyAdapter.MyHelper;
-//import com.example.sus.android_xutilstext.Xutils.MyPostUtil;
-//import com.google.gson.Gson;
+import com.bawie.todaynews.utils.MyHelper;
+import com.google.gson.Gson;
 
 import org.xutils.x;
 
@@ -56,34 +53,56 @@ public class Pingdao extends Activity implements  OnItemClickListener{
         super.onCreate(savedInstanceState);
         setContentView(R.layout.oindaos);
         initView();
+        initData();
         x.view().inject(this);
 
     }
 
 
-    public void initView(){
-        mUserGv =(MyGridView) findViewById(R.id.userGridView);
-        mOtherGv =(MyGridView) findViewById(R.id.otherGridView);
+        private void initData() {
+            mUserList .add("推荐");
+            mUserList.add("新闻");
+            mUserList.add("健康");
+            mUserList.add("头条");
+           mOtherList.add("北京");mUserList.add("视频");
+            mOtherList.add("美女");
+           mOtherList.add("汽车");mUserList.add("时事");
+           mOtherList.add("段子");
 
-//        MyHelper mySQLlite = new MyHelper(this);
-//        db = mySQLlite.getReadableDatabase();
-//        Cursor cursor = db.query("channel", new String[]{"name"}, "style=?", new String[]{"1"}, null, null, null);
-//        while (cursor.moveToNext()) {
-//            String string = cursor.getString(0);
-//            mUserList.add(string);
-//        }
-//        Cursor cursor2 = db.query("channel", new String[]{"name"}, "style=?", new String[]{"0"}, null, null, null);
-//        while (cursor2.moveToNext()) {
-//            String string = cursor2.getString(0);
-//            mOtherList.add(string);
-//        }
+
+
+
+
+        }
+
+
+
+    public void initView() {
+        mUserGv = (MyGridView) findViewById(R.id.userGridView);
+        mOtherGv = (MyGridView) findViewById(R.id.otherGridView);
+
+        MyHelper mySQLlite = new MyHelper(this);
+        db = mySQLlite.getReadableDatabase();
+        Cursor cursor = db.query("channel", new String[]{"name"}, "style=?", new String[]{"1"}, null, null, null);
+        while (cursor.moveToNext()) {
+            String string = cursor.getString(0);
+            mUserList.add(string);
+        }
+        Cursor cursor2 = db.query("channel", new String[]{"name"}, "style=?", new String[]{"0"}, null, null, null);
+        while (cursor2.moveToNext()) {
+            String string = cursor2.getString(0);
+            mOtherList.add(string);
+        }
         mUserAdapter = new OtherAdapter(this, mUserList,true);
         mOtherAdapter = new OtherAdapter(this, mOtherList,false);
         mUserGv.setAdapter(mUserAdapter);
         mOtherGv.setAdapter(mOtherAdapter);
         mUserGv.setOnItemClickListener(Pingdao.this);
         mOtherGv.setOnItemClickListener(this);
+
     }
+
+
 
 
 
