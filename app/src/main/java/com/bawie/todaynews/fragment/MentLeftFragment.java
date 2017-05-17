@@ -13,7 +13,6 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.bawie.todaynews.LixianActivity;
 import com.bawie.todaynews.MoreLoginActivity;
 import com.bawie.todaynews.QQLogin;
 import com.bawie.todaynews.R;
@@ -34,7 +33,6 @@ import org.greenrobot.eventbus.EventBus;
 public class MentLeftFragment extends Fragment {
 
     private TextView but;
-    private TextView text;
     private ImageView imageView;
     private SwitchButton switch_btn;
     private View view;
@@ -52,7 +50,7 @@ public class MentLeftFragment extends Fragment {
     private void initeView(View view) {
         but= (TextView) view.findViewById(R.id.but);
         imageView= (ImageView) view.findViewById(R.id.left_qqimage);
-        text= (TextView) view.findViewById(R.id.lixian_text);
+
         switch_btn = (SwitchButton) view.findViewById(R.id.switch_btn);
         switch_btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){
 
@@ -89,13 +87,6 @@ public class MentLeftFragment extends Fragment {
             public void onClick(View v) {
                 Intent in=new Intent(getActivity(), MoreLoginActivity.class);
                 startActivity(in);
-            }
-        });
-        text.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i=new Intent(getActivity(), LixianActivity.class);
-                startActivity(i);
             }
         });
         imageView.setOnClickListener(new View.OnClickListener() {
