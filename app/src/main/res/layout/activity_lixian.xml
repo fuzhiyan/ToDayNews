@@ -31,11 +31,11 @@
             android:textSize="20dp"
             />
     </LinearLayout>
-    <view
+    <View
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#000000"></view>
+        android:background="#000000"></View>
     <TextView
         android:layout_marginTop="10dp"
         android:layout_marginLeft="20dp"
@@ -43,11 +43,11 @@
         android:layout_height="wrap_content"
         android:text="我的频道"
         android:textSize="20dp" />
-    <view
+    <View
         android:layout_marginTop="10dp"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:background="#000000"></view>
+        android:background="#000000"></View>
     <ListView
         android:layout_width="match_parent"
         android:layout_height="match_parent"

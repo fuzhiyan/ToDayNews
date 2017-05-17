@@ -72,6 +72,7 @@
         <activity android:name=".QQLogin" />
         <activity android:name=".Sign" />
         <activity android:name=".Pingdao" />
+        <activity android:name=".LixianActivity"/>
         <activity
             android:name="com.umeng.qq.tencent.AuthActivity"
             android:launchMode="singleTask"
