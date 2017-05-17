@@ -13,6 +13,7 @@ import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bawie.todaynews.LixianActivity;
 import com.bawie.todaynews.MoreLoginActivity;
 import com.bawie.todaynews.QQLogin;
 import com.bawie.todaynews.R;
@@ -36,6 +37,7 @@ public class MentLeftFragment extends Fragment {
     private ImageView imageView;
     private SwitchButton switch_btn;
     private View view;
+    private TextView btn_lixian;
 
     @Nullable
     @Override
@@ -50,6 +52,15 @@ public class MentLeftFragment extends Fragment {
     private void initeView(View view) {
         but= (TextView) view.findViewById(R.id.but);
         imageView= (ImageView) view.findViewById(R.id.left_qqimage);
+        btn_lixian = (TextView) view.findViewById(R.id.btn_lixian);
+
+        btn_lixian.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), LixianActivity.class);
+                startActivity(intent);
+            }
+        });
 
         switch_btn = (SwitchButton) view.findViewById(R.id.switch_btn);
         switch_btn.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener(){

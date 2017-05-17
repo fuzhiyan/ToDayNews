@@ -1,5 +1,6 @@
 package com.bawie.todaynews;
 
+import android.app.Activity;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
@@ -9,11 +10,12 @@ import com.bawie.todaynews.adapter.LixianAdater;
 import java.util.ArrayList;
 import java.util.List;
 
-public class LixianActivity extends AppCompatActivity {
+public class LixianActivity extends Activity {
 
     private ListView lixian_listview;
     private List<String> list = new ArrayList<>();
     String [] arr = {"订阅","图片","正能量","特卖","房产","电影","推荐","热点","娱乐","财经","国际","趣图","健康"};
+    private LixianAdater adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,7 +27,7 @@ public class LixianActivity extends AppCompatActivity {
             list.add(arr[i]);
         }
 
-        LixianAdater adapter = new LixianAdater(this,list);
+        adapter = new LixianAdater(this,list);
         lixian_listview.setAdapter(adapter);
     }
 }
